@@ -1,0 +1,194 @@
+<div class="container-fluid">
+    <br>
+  <h4>Voice Of Customer</h4>
+  <form #userForm="ngForm">
+
+        {{userModel | json}}
+<!--
+    code for ngModelgroup
+    <div ngModelGroup="address">
+      <div class="form-group">
+        <label>Street</label>
+        <input type="text" class="form-control" name="Street" ngModel>
+      </div>
+      <div class="form-group">
+          <label>City</label>
+          <input type="text" class="form-control" name="City" ngModel>
+      </div>
+      <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" name="State" ngModel>
+      </div>
+      <div class="form-group">
+          <label>Postal Code</label>
+          <input type="text" class="form-control" name="postalcode" ngModel>
+      </div>
+    </div>
+
+    For Bining the data
+
+    One way:
+    {{ userForm.value | json}}
+<hr />
+    Two way:
+    {{userModel | json}}-->
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="userModel.email" class="form-control" name="email">
+        <div *ngIf="email.errors && (email.invalid || email.untouched)">
+                <small class="text-danger" *ngIf="email.errors.required">Email field is Mandatory</small>          
+                <small class="text-danger" *ngIf="email.errors.pattern">Email entered is incorrect</small>
+              </div> 
+    </div>
+
+    <!--{{name.untouched}}-->
+
+    <div class="form-group">
+      <label>Pad</label>
+      <textarea class="form-control" rows="5" type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+      class="form-control" name="pad" [(ngModel)]="userModel.pad"></textarea>
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched">Pad is required</small>
+    </div>
+
+    <div class="form-group">
+      <label>Experience in the school</label>
+      <input type="text" class="form-control" #experience="ngModel"
+      pattern="[0-9]{2}" name="experience" [(ngModel)]="userModel.experience" [class.is-invalid]="experience.invalid && experience.touched">
+      <small class="text-danger" [class.d-none]="experience.valid || experience.untouched">Experience should be two digit</small>
+    </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <input type="text" required #age="ngModel" pattern="^\d{2}" [class.is-invalid]="age.invalid && age.touched" 
+      class="form-control" name="age" [(ngModel)]="userModel.age">
+      <!--<small class="text-danger" [class.d-none]="age.valid || age.untouched">Age is required and must be two digit</small>-->
+      <div *ngIf="age.errors && (age.invalid || age.untouched)">
+        <small class="text-danger" *ngIf="age.errors.required">Age field is Mandatory</small>          
+        <small class="text-danger" *ngIf="age.errors.pattern">Age field is must be 2 Digits</small>
+      </div> 
+    </div>
+
+    <div class="form-group">
+      <label>College</label>
+      <input type="text" class="form-control" name="college" [(ngModel)]="userModel.college">
+    </div>
+    
+    <div class="form-group"><label>Interest in Kiosk</label>
+        <div class="radio"><label><input type="radio" name="optradio">Level 1</label></div>
+        <div class="radio"><label><input type="radio" name="optradio">Level 2</label></div>
+        <div class="radio"><label><input type="radio" name="optradio">Level 3</label></div>
+        <div class="radio"><label><input type="radio" name="optradio">Level 4</label></div>
+        <div class="radio"><label><input type="radio" name="optradio">Level 5</label></div>
+
+                
+      <!--select class="custom-select" name="topic">
+        <option value="">Interest in Kiosk</option>
+        <option *ngFor="let interest of interests">{{interest}}</option>
+      </select-->
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+        <textarea class="form-control" rows="5" name="address" [(ngModel)]="userModel.address"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" class="form-control" name="phone" [(ngModel)]="userModel.phone">
+    </div>
+    
+    <div class="form-group">
+        <label>What skills would you like to help kids build?</label>
+        <textarea class="form-control" rows="5" name="skills" [(ngModel)]="userModel.skills"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>What language do you want the courses to be in?</label>
+        <input type="text" class="form-control" name="languages" [(ngModel)]="userModel.languages">
+        
+    </div>
+
+    <div class="form-group">
+        <label>What are the shortcomings of the current syllabus and how does it limit the child's curiosity?</label>
+        
+        <textarea class="form-control" rows="5" name="shortcomings" [(ngModel)]="userModel.shortcomings"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>What do you think will make the learning experience of students better?</label>
+        <textarea class="form-control" rows="5" name="learningexperience" placeholder="Enter your Answer" [(ngModel)]="userModel.learningexperience"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>What roadblocks do you have in getting this Kiosk installed?</label>
+        <textarea class="form-control" rows="5" name="roadblocks" placeholder="Enter your Answer" [(ngModel)]="userModel.roadblocks"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Where would you install a kiosk in the school?</label>
+        <textarea class="form-control" rows="5" name="place" placeholder="Enter your Answer" [(ngModel)]="userModel.place"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>When would the kids get to use the installed Kiosks?</label>
+        <textarea class="form-control" rows="5" name="time" placeholder="Enter your Answer" [(ngModel)]="userModel.time"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>What do you think about holistic education?	How can we bring a change in this mindset?</label>
+        <textarea class="form-control" rows="5" name="mindset" placeholder="Enter your Answer" [(ngModel)]="userModel.mindset"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>How can installing the kiosk be helpful to the teachers?</label>
+        <textarea class="form-control" rows="5" name="helpfultoteachers" placeholder="Enter your Answer" [(ngModel)]="userModel.helpfultoteachers"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Your other questions (Type the question and answer)</label>
+        <!---input type="text" class="form-control" name="question" placeholder="Enter your Answer" [(ngModel)]="userModel.question"-->
+        <textarea class="form-control" rows="5" name="question" placeholder="Enter your Answer" [(ngModel)]="userModel.question"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Comments</label>
+        <textarea class="form-control" rows="5" name="comments" placeholder="Enter your Answer" [(ngModel)]="userModel.comments"></textarea>
+    </div>
+
+
+  <!--
+    Data used in component.ts
+      topics = ['Angular', 'React', 'Vue'];
+      userModel = new User('Rob', 'aa@test.com',4556,'','morning',true);
+
+
+    <div class="form-group">
+      <select class="custom-select" name="topic" [(ngModel)]="userModel.topic">
+        <option value="">I am interested in</option>
+        <option *ngFor="let topic of topics">{{topic}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Time Preference</label>
+      <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="userModel.timePreference" type="radio" name="timePreference" value="morning">
+        <label class="form-check-label">Morning (9AM-12PM)</label>
+      </div>
+
+      <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.timePreference" type="radio" name="timePreference" value="evening">
+          <label class="form-check-label">Evening (5PM-8PM)</label>
+      </div>
+
+      <div class="form-check mb-3">
+          <input class="form-check-input" name="Subscribe" [(ngModel)]="userModel.Subscribe" type="checkbox">
+          <label class="form-check-label">Send me promotional offers</label>
+      </div>
+    </div>
+  -->
+    <button class="btn btn-primary" type="submit">Submit Form</button>
+
+  </form>
+</div>

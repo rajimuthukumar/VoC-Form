@@ -1,0 +1,7 @@
+.container-fluid{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+span ~ span {
+    padding-left: 10px;
+    }
